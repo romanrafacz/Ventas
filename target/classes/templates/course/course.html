@@ -1,0 +1,40 @@
+<html layout:decorator="index">
+	<div layout:fragment="content">
+		
+		<a class="btn btn-primary" th:href="@{'/course/new'}">Add New course</a>
+		
+		<table class="table table-striped" id="course_list">
+			<thead>
+			<tr>
+				<th>Course Code</th>
+				<th>Course</th>
+				<th>Edit</th>
+				<th>Delete</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr data-th-each="course: ${courses}">
+				<td class="id" data-th-text="${course.courseCode}"></td>
+				<td class="id" data-th-text="${course.courseName}"></td>
+				<td>
+					<a th:href="@{'/course/{id}/edit'(id=${course.courseId})}" class="edit" th:attr="name=${course.courseName}">
+						<span class="fa-stack">
+							<i class="glyphicon glyphicon-edit" />
+						</span>
+					</a>
+				
+				</td>
+				<td>
+					<a th:href="@{'/course/{id}/delete'(id=${course.courseId})}" class="delete" th:attr="name=${course.courseName}">
+						<span class="fa-stack">
+							<i class="glyphicon glyphicon-trash" />
+						</span>
+					</a>
+				</td>
+			</tr>
+			</tbody>
+		</table>
+	
+	</div>
+
+</html>

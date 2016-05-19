@@ -1,0 +1,41 @@
+<html layout:decorator="index">
+	<div layout:fragment="content">
+		
+		<a class="btn btn-primary" th:href="@{'/user/new'}">Add New user</a>
+		
+		<table class="table table-striped" id="user_list">
+			<thead>
+			<tr>
+				<th>Username</th>
+				<th>Email</th>
+				<th>Edit</th>
+				<th>Delete</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr data-th-each="user: ${users}">
+				<td class="id" data-th-text="${user.userId}"></td>
+				<td class="id" data-th-text="${user.username}"></td>
+				<td><a th:href="@{'/user/{id}'(id=${user.userId})}" class="user" data-th-text="${user.username}"></a></td>
+				<td>
+					<a th:href="@{'/user/{id}/edit'(id=${user.userId})}" class="edit" th:attr="name=${user.username}">
+						<span class="fa-stack">
+							<i class="glyphicon glyphicon-edit" />
+						</span>
+					</a>
+				
+				</td>
+				<td>
+					<a th:href="@{'/user/{id}/delete'(id=${user.userId})}" class="delete" th:attr="name=${user.username}">
+						<span class="fa-stack">
+							<i class="glyphicon glyphicon-trash" />
+						</span>
+					</a>
+				</td>
+			</tr>
+			</tbody>
+		</table>
+	
+	</div>
+
+</html>
