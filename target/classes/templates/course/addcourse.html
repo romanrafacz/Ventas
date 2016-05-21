@@ -2,19 +2,17 @@
 	<div layout:fragment="content">
 	
 		<p>Create a new customer</p>
-		<form method="post" name="user_form" id="user_form" th:action="@{'/course/add'}" th:object="${course}" role="form">
+		<form method="post" name="user_form" id="user_form" th:action="@{'/course/add'}" role="form">
 		
 			<table>
 				<tr>
 				<td>Course Code</td>
-				<td><input type="text"  th:field="*{courseCode}" /></td>
-				<td th:if="${#fields.hasErrors('courseCode')}" th:errors="*{courseCode}">Course Code Error</td>
+				<td><input type="text"  th:value="${author.username}" /></td>
 				</tr>
 				
 				<tr>
 				<td>Course Name</td>
-				<td><input type="text"  th:field="*{courseName}" /></td>
-				<td th:if="${#fields.hasErrors('courseName')}" th:errors="*{courseName}">Course Name Error</td>
+				<td><input type="text"  th:value="${authorDetails.email}" /></td>
 				</tr>
 
 				 <tr>
