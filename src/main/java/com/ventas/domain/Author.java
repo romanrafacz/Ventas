@@ -3,6 +3,7 @@ package com.ventas.domain;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,11 +23,11 @@ public class Author {
 	@Column(name="author_username")
 	private String username;
 	
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
 	@PrimaryKeyJoinColumn
 	private AuthorDetails authorDetails;
 	
-	public void Author(){}
+	public void Author(){};
 
 	public String getUsername() {
 		return username;

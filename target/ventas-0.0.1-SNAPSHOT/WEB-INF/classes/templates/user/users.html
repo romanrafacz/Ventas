@@ -14,9 +14,8 @@
 			</thead>
 			<tbody>
 			<tr data-th-each="user: ${users}">
-				<td class="id" data-th-text="${user.userId}"></td>
 				<td class="id" data-th-text="${user.username}"></td>
-				<td><a th:href="@{'/user/{id}'(id=${user.userId})}" class="user" data-th-text="${user.username}"></a></td>
+				<td><a th:href="@{'/user/{id}'(id=${user.userId})}" class="user" data-th-text="${user.email}"></a></td>
 				<td>
 					<a th:href="@{'/user/{id}/edit'(id=${user.userId})}" class="edit" th:attr="name=${user.username}">
 						<span class="fa-stack">

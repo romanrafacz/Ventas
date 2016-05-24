@@ -4,7 +4,10 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
@@ -16,14 +19,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.ventas.dao.UserDao;
 import com.ventas.domain.User;
+import com.ventas.repository.UserRepository;
+import com.ventas.service.impl.UserServiceImpl;
 
 @Controller
 public class UserController {
 	
 	@Autowired
-	private UserDao userRepository;
+	private UserRepository userRepository;
+	private com.ventas.service.UserService userService;
+	
+	private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 	
 	@Autowired
 	private JavaMailSender javaMailSender;
@@ -44,12 +51,12 @@ public class UserController {
 			@Valid User newUser, BindingResult bindingResult, Model model
 			){
 		
-	if (bindingResult.hasErrors()){
-		return "user/adduser";
-	}
-
-	userRepository.save(newUser);
+		userRepository.save(newUser);
+		//userService.addUser(newUser);
+		return "redirect:/user";
 	
+	}
+		
 	/*MimeMessage mail = javaMailSender.createMimeMessage();
 	
 	 try {
@@ -63,8 +70,5 @@ public class UserController {
          e.printStackTrace();
      } finally {}
      javaMailSender.send(mail);*/
-	
-	return ("redirect:/user");
-	}
 	
 }

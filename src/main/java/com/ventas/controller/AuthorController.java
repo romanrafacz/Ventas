@@ -26,7 +26,6 @@ import com.ventas.repository.AuthorRepository;
 public class AuthorController {
 	
 	@PersistenceContext EntityManager entityManager;
-
 	
 	@Autowired
 	private AuthorRepository authorRepository;
